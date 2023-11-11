@@ -1,14 +1,16 @@
-function Tabs({children}) {
+function Tabs({label, onSelect}) {
+
   return (
     <li className="me-2">
-      <a
-        href=""
+      <button
+      onClick={onSelect}
         className="inline-block px-4 py-3 text-violet-400 hover:bg-purple-900 rounded-lg"
         aria-current="page"
+
       >
   
-     {children}
-      </a>
+     {label}
+      </button>
     </li>
   );
 }

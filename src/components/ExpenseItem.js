@@ -1,8 +1,31 @@
+import { useState } from "react";
 import Header from "./Header";
 import Tabs from "./Tabs";
+import { CORE_CONCEPTS } from "../data";
 
 export default function ExpenseItem(props) {
-  
+  const [tabContent, settabContent] = useState("");
+  let tabData = (
+    <p className="text-sm text-violet-400 dark:text-violet-400">
+      Please Select Any Tab
+    </p>
+  );
+  if (tabContent) {
+    tabData = (
+      <div>
+        <h2 className="text-violet-400">{CORE_CONCEPTS[tabContent].title}</h2>
+        <p className="text-sm text-violet-400 dark:text-violet-400">
+          {CORE_CONCEPTS[tabContent].description}
+        </p>
+      </div>
+    );
+  }
+
+  // let tabContent = "Please select";
+  function handleClick(tab) {
+    settabContent(tab);
+    console.log(CORE_CONCEPTS);
+  }
   return (
     <div>
       <div className="py-24 sm:py-32">
@@ -98,13 +121,24 @@ export default function ExpenseItem(props) {
         <div className="py-24 sm:py-32 mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mb-4 border-b border-gray-200 dark:border-gray-700">
             <ul className="flex flex-wrap text-sm font-medium text-center text-gray-500 dark:text-gray-400">
-              <Tabs label ="Tab 1" />
-              <Tabs> Tab 2 </Tabs>
-              <Tabs label ="Tab 3" />
-              <Tabs label ="Tab 4" />
-              <Tabs label ="Tab 5" />
-             
+              <Tabs
+                label="Components"
+                onSelect={() => handleClick("components")}
+              />
+              <Tabs label="JSX" onSelect={() => handleClick("jsx")} />
+              <Tabs label="Props" onSelect={() => handleClick("props")} />
+              <Tabs label="State" onSelect={() => handleClick("state")} />
             </ul>
+          </div>
+          <div id="default-tab-content">
+            <div
+              className=" p-4 rounded-lg bg-gray-50 dark:bg-purple-900"
+              id="profile"
+              role="tabpanel"
+              aria-labelledby="profile-tab"
+            >
+              {tabData}
+            </div>
           </div>
         </div>
       </section>
