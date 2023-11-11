@@ -2,7 +2,7 @@ import Header from "./Header";
 import Tabs from "./Tabs";
 
 export default function ExpenseItem(props) {
-  console.log(props.author);
+  
   return (
     <div>
       <div className="py-24 sm:py-32">
@@ -98,12 +98,12 @@ export default function ExpenseItem(props) {
         <div className="py-24 sm:py-32 mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mb-4 border-b border-gray-200 dark:border-gray-700">
             <ul className="flex flex-wrap text-sm font-medium text-center text-gray-500 dark:text-gray-400">
-             <Tabs />
-             <Tabs />
-             <Tabs />
-             <Tabs />
-             <Tabs />
-              
+              <Tabs label ="Tab 1" />
+              <Tabs> Tab 2 </Tabs>
+              <Tabs label ="Tab 3" />
+              <Tabs label ="Tab 4" />
+              <Tabs label ="Tab 5" />
+             
             </ul>
           </div>
         </div>

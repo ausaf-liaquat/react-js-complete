@@ -25,7 +25,7 @@ function App() {
     <div>
      
       <ExpenseItem
-      {...posts[0]}
+        {...posts[0]}
       />
     </div>
   );

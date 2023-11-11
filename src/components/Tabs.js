@@ -1,12 +1,13 @@
-function Tabs(props) {
+function Tabs({children}) {
   return (
     <li className="me-2">
       <a
-        href="#"
-        className="inline-block px-4 py-3 text-white bg-blue-600 rounded-lg "
+        href=""
+        className="inline-block px-4 py-3 text-violet-400 hover:bg-purple-900 rounded-lg"
         aria-current="page"
       >
-        Tab 1
+  
+     {children}
       </a>
     </li>
   );

@@ -1,7 +1,10 @@
 function Header() {
-  var things = ["Rock", "Paper", "Scissor"];
-  var thing = things[Math.floor(Math.random() * things.length)];
-  console.log(Math.floor(Math.random() * things.length));
+
+  let things = ["Rock", "Paper", "Scissor"];
+
+  let thing = things[Math.floor(Math.random() * things.length)];
+
+
   return (
     <div>
       <div className="mx-auto max-w-2xl lg:mx-0">
