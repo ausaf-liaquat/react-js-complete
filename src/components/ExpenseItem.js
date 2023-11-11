@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Header from "./Header";
 import Tabs from "./Tabs";
-import { CORE_CONCEPTS } from "../data";
+import { CORE_CONCEPTS, Listings } from "../data";
 
 export default function ExpenseItem(props) {
   const [tabContent, settabContent] = useState("");
@@ -14,6 +14,11 @@ export default function ExpenseItem(props) {
     tabData = (
       <div>
         <h2 className="text-violet-400">{CORE_CONCEPTS[tabContent].title}</h2>
+        <img
+          className="h-48 w-full object-cover md:h-full md:w-48"
+          src={CORE_CONCEPTS[tabContent].image}
+          alt="Modern building architecture"
+        />
         <p className="text-sm text-violet-400 dark:text-violet-400">
           {CORE_CONCEPTS[tabContent].description}
         </p>
@@ -24,7 +29,6 @@ export default function ExpenseItem(props) {
   // let tabContent = "Please select";
   function handleClick(tab) {
     settabContent(tab);
-    console.log(CORE_CONCEPTS);
   }
   return (
     <div>
@@ -32,87 +36,28 @@ export default function ExpenseItem(props) {
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <Header />
           <div className="mx-auto mt-10 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 border-t border-gray-200 pt-10 sm:mt-16 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3">
-            <div className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
-              <div className="md:flex">
-                <div className="md:shrink-0">
-                  <img
-                    className="h-48 w-full object-cover md:h-full md:w-48"
-                    src={props.author.imageUrl}
-                    alt="Modern building architecture"
-                  />
-                </div>
-                <div className="p-8">
-                  <div className="uppercase tracking-wide text-sm text-indigo-500 font-semibold">
-                    {props.title}
+            {Listings.map((item, k) => (
+              <div key={k}>
+                <div className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
+                  <div className="md:flex">
+                    <div className="md:shrink-0">
+                      <img
+                        className="h-48 w-full object-cover md:h-full md:w-48"
+                        src={item.image}
+                        alt="Modern building architecture"
+                      />
+                    </div>
+                    <div className="p-8">
+                      <div className="uppercase tracking-wide text-sm text-indigo-500 font-semibold">
+                        {item.title}
+                      </div>
+
+                      <p className="mt-2 text-slate-500">{item.description}</p>
+                    </div>
                   </div>
-                  <a
-                    href="#"
-                    className="block mt-1 text-lg leading-tight font-medium text-black hover:underline"
-                  >
-                    Incredible accommodation for your team
-                  </a>
-                  <p className="mt-2 text-slate-500">
-                    Looking to take your team away on a retreat to enjoy awesome
-                    food and take in some sunshine? We have a list of places to
-                    do just that.
-                  </p>
                 </div>
               </div>
-            </div>
-            <div className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
-              <div className="md:flex">
-                <div className="md:shrink-0">
-                  <img
-                    className="h-48 w-full object-cover md:h-full md:w-48"
-                    src="https://images.unsplash.com/photo-1698611229097-cf0e2fc8ba81?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                    alt="Modern building architecture"
-                  />
-                </div>
-                <div className="p-8">
-                  <div className="uppercase tracking-wide text-sm text-indigo-500 font-semibold">
-                    Company retreats
-                  </div>
-                  <a
-                    href="#"
-                    className="block mt-1 text-lg leading-tight font-medium text-black hover:underline"
-                  >
-                    Incredible accommodation for your team
-                  </a>
-                  <p className="mt-2 text-slate-500">
-                    Looking to take your team away on a retreat to enjoy awesome
-                    food and take in some sunshine? We have a list of places to
-                    do just that.
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
-              <div className="md:flex">
-                <div className="md:shrink-0">
-                  <img
-                    className="h-48 w-full object-cover md:h-full md:w-48"
-                    src="https://images.unsplash.com/photo-1698611229097-cf0e2fc8ba81?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                    alt="Modern building architecture"
-                  />
-                </div>
-                <div className="p-8">
-                  <div className="uppercase tracking-wide text-sm text-indigo-500 font-semibold">
-                    Company retreats
-                  </div>
-                  <a
-                    href="#"
-                    className="block mt-1 text-lg leading-tight font-medium text-black hover:underline"
-                  >
-                    Incredible accommodation for your team
-                  </a>
-                  <p className="mt-2 text-slate-500">
-                    Looking to take your team away on a retreat to enjoy awesome
-                    food and take in some sunshine? We have a list of places to
-                    do just that.
-                  </p>
-                </div>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </div>
@@ -122,17 +67,30 @@ export default function ExpenseItem(props) {
           <div className="mb-4 border-b border-gray-200 dark:border-gray-700">
             <ul className="flex flex-wrap text-sm font-medium text-center text-gray-500 dark:text-gray-400">
               <Tabs
-                label="Components" isSelected ={tabContent == "components"}
+                label="Components"
+                isSelected={tabContent == "components"}
                 onSelect={() => handleClick("components")}
               />
-              <Tabs label="JSX"  isSelected ={tabContent == "jsx"} onSelect={() => handleClick("jsx")} />
-              <Tabs label="Props"  isSelected ={tabContent == "props"} onSelect={() => handleClick("props")} />
-              <Tabs label="State"  isSelected ={tabContent == "state"} onSelect={() => handleClick("state")} />
+              <Tabs
+                label="JSX"
+                isSelected={tabContent == "jsx"}
+                onSelect={() => handleClick("jsx")}
+              />
+              <Tabs
+                label="Props"
+                isSelected={tabContent == "props"}
+                onSelect={() => handleClick("props")}
+              />
+              <Tabs
+                label="State"
+                isSelected={tabContent == "state"}
+                onSelect={() => handleClick("state")}
+              />
             </ul>
           </div>
           <div id="default-tab-content">
             <div
-              className=" p-4 rounded-lg bg-gray-50 bg-purple-900"
+              className=" p-4 bg-gray-50 bg-purple-900"
               id="profile"
               role="tabpanel"
               aria-labelledby="profile-tab"
