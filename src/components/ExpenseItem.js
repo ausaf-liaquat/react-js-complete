@@ -122,17 +122,17 @@ export default function ExpenseItem(props) {
           <div className="mb-4 border-b border-gray-200 dark:border-gray-700">
             <ul className="flex flex-wrap text-sm font-medium text-center text-gray-500 dark:text-gray-400">
               <Tabs
-                label="Components"
+                label="Components" isSelected ={tabContent == "components"}
                 onSelect={() => handleClick("components")}
               />
-              <Tabs label="JSX" onSelect={() => handleClick("jsx")} />
-              <Tabs label="Props" onSelect={() => handleClick("props")} />
-              <Tabs label="State" onSelect={() => handleClick("state")} />
+              <Tabs label="JSX"  isSelected ={tabContent == "jsx"} onSelect={() => handleClick("jsx")} />
+              <Tabs label="Props"  isSelected ={tabContent == "props"} onSelect={() => handleClick("props")} />
+              <Tabs label="State"  isSelected ={tabContent == "state"} onSelect={() => handleClick("state")} />
             </ul>
           </div>
           <div id="default-tab-content">
             <div
-              className=" p-4 rounded-lg bg-gray-50 dark:bg-purple-900"
+              className=" p-4 rounded-lg bg-gray-50 bg-purple-900"
               id="profile"
               role="tabpanel"
               aria-labelledby="profile-tab"
