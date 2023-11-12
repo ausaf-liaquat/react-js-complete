@@ -1,6 +1,6 @@
 function Header() {
 
-  let things = ["Rock", "Paper", "Scissor"];
+  let things = ["Components", "JSX", "Props"];
 
   let thing = things[Math.floor(Math.random() * things.length)];
 
