@@ -199,7 +199,7 @@ ol {
   font-size: 5rem;
   cursor: pointer;
   font-family: 'Caprasimo', cursive;
-  padding: 1rem;
+  /* padding: 1rem; */
 }
 
 #game-over {
