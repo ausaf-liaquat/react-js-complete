@@ -1,10 +1,6 @@
 import { useState } from "react";
-import ExpenseItem from "./components/ExpenseItem";
-import TicToe from "./components/TicToe/TicToe";
-import "./index.css";
-import Player from "./components/Countdown/Player";
 
-function App() {
+export default function Player() {
   const [enteredPlayerName, setEnteredPlayerName] = useState("");
   const [submitted, setSubmitted] = useState(false);
   function handleChange(event) {
@@ -14,14 +10,13 @@ function App() {
   function handleClick(params) {
     setSubmitted(true);
   }
-
   return (
-    <div>
-      <Player />
-      {/* <TicToe />
-      <ExpenseItem /> */}
-    </div>
+    <section id="player">
+      <h2>Welcome {submitted?enteredPlayerName:'unknown entity'}</h2>
+      <p>
+        <input type="text" onChange={handleChange} value={enteredPlayerName} />
+        <button onClick={handleClick}>Set Name</button>
+      </p>
+    </section>
   );
 }
-
-export default App;
